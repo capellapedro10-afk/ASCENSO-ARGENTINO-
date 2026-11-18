@@ -1,0 +1,25 @@
+::ffff:127.0.0.1 - - [15/Oct/2026 15:43:13] "GET /index.html HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [15/Oct/2026 15:49:26] "GET /index.html HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [15/Oct/2026 15:49:26] "GET /css/style.css HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [15/Oct/2026 15:49:26] "GET /js/league.js HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [15/Oct/2026 15:49:26] "GET /js/match.js HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [15/Oct/2026 15:49:26] "GET /js/state.js HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [15/Oct/2026 15:49:26] "GET /js/data.js HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [15/Oct/2026 15:49:26] "GET /js/config.js HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [15/Oct/2026 15:49:26] "GET /js/market.js HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [15/Oct/2026 15:49:26] "GET /js/ui.js HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [15/Oct/2026 15:49:26] "GET /js/app.js HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [15/Oct/2026 15:50:07] code 404, message File not found
+::ffff:127.0.0.1 - - [15/Oct/2026 15:50:07] "GET /favicon.ico HTTP/1.1" 404 -
+::ffff:127.0.0.1 - - [15/Oct/2026 15:53:19] "GET /js/ui.js HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [15/Oct/2026 16:01:51] "GET /index.html HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [15/Oct/2026 16:01:52] "GET /css/style.css HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [15/Oct/2026 16:01:52] "GET /js/data.js HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [15/Oct/2026 16:01:52] "GET /js/config.js HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [15/Oct/2026 16:01:52] "GET /js/state.js HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [15/Oct/2026 16:01:52] "GET /js/match.js HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [15/Oct/2026 16:01:52] "GET /js/league.js HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [15/Oct/2026 16:01:52] "GET /js/market.js HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [15/Oct/2026 16:01:52] "GET /js/ui.js HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [15/Oct/2026 16:01:52] "GET /js/app.js HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [15/Oct/2026 16:02:33] "GET /js/ui.js HTTP/1.1" 304 -

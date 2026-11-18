@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascenso Argentino — Simulador de gestión de fútbol</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="career-mode">
+  <header class="topbar">
+    <div class="topbar-brand">ASCENSO ARGENTINO</div>
+    <div class="topbar-center" id="topbar-center">Simulador de gestión de fútbol</div>
+    <div>
+      <button class="topbar-btn" id="btn-menu">Menú</button>
+    </div>
+  </header>
+
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-head">
+        <div class="sidebar-brand">ASCENSO ARGENTINO</div>
+      </div>
+      <div id="sidebar-badge"></div>
+      <div class="sidebar-divider"></div>
+      <nav>
+        <button class="nav-item" data-screen="home">🏠 Inicio</button>
+        <button class="nav-item" data-screen="plantel">👥 Plantel</button>
+        <button class="nav-item" data-screen="calendario">📅 Calendario</button>
+        <button class="nav-item" data-screen="clasificacion">📊 Clasificación</button>
+        <button class="nav-item" data-screen="mercado">💸 Mercado</button>
+        <button class="nav-item" data-screen="finanzas">💰 Finanzas</button>
+        <button class="nav-item" data-screen="historial">🏆 Historial</button>
+        <div class="sidebar-divider"></div>
+        <button class="nav-item btn-danger" data-screen="delete-save">🗑️ Borrar partida</button>
+        <button class="nav-item btn-danger" data-screen="new-career">🆕 Nueva carrera</button>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <!-- Pantalla: Inicio -->
+      <section class="screen active" data-screen="home">
+        <div class="section-header">
+          <div class="section-title">🏠 Inicio</div>
+        </div>
+        <div class="card stat-row">
+          <div class="stat">
+            <div class="stat-label">Club</div>
+            <div class="stat-value" id="home-club-name">—</div>
+            <div class="stat-delta" id="home-club-city"></div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Categoría</div>
+            <div class="stat-value" id="home-category">—</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Temporada</div>
+            <div class="stat-value" id="home-season">—</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Fecha</div>
+            <div class="stat-value" id="home-matchday">—</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Presupuesto</div>
+            <div class="stat-value ok" id="home-budget">—</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Valoración plantel</div>
+            <div class="stat-value" id="home-squad-rating">—</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Estado del equipo</h3>
+          <div style="display:flex; gap:16px; flex-wrap:wrap;">
+            <div style="display:flex; flex-direction:column; gap:4px;">
+              <div style="font-size:.8rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted);">Último resultado</div>
+              <div class="stat-value" id="home-last-result">—</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:4px;">
+              <div style="font-size:.8rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted);">Próximo partido</div>
+              <div class="stat-value" id="home-next-match">—</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:4px;">
+              <div style="font-size:.8rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted);">Posición</div>
+              <div class="stat-value" id="home-position">—</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:4px;">
+              <div style="font-size:.8rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted);">Puntos</div>
+              <div class="stat-value" id="home-points">—</div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="text-align:center;">
+          <button class="btn btn-primary btn-block" id="btn-next-match">Jugar próximo partido</button>
+          <p style="margin-top:10px; font-size:.85rem; color:var(--muted);">Jugá la siguiente fecha de tu división.</p>
+        </div>
+      </section>
+
+      <!-- Pantalla: Plantel -->
+      <section class="screen" data-screen="plantel">
+        <div class="section-header">
+          <div class="section-title">👥 Plantel</div>
+          <div class="section-sub">Presupuesto: <span id="plantel-budget">—</span></div>
+        </div>
+        <div class="card">
+          <h3 id="plantel-title">Plantel</h3>
+          <div class="formation-controls" id="formation-controls"></div>
+          <div id="style-controls"></div>
+          <div class="lineup-pitch" id="lineup-pitch"></div>
+          <div style="margin-top:14px; font-weight:700;">Valoración del once: <span id="team-rating" class="team-rating">—</span> — Estado: <span id="team-status">—</span></div>
+          <div class="analysis" id="team-analysis"></div>
+          <div style="margin-top:14px; font-weight:700;">Suplentes</div>
+          <div class="subs-list" id="subs-list"></div>
+        </div>
+        <div class="card table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Jugador</th><th>Edad</th><th>Pos.</th><th>Rol</th><th>Val.</th><th>Pot.</th><th>Salario</th><th>Valor</th><th>Estado</th><th></th>
+              </tr>
+            </thead>
+            <tbody id="plantel-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Pantalla: Calendario -->
+      <section class="screen" data-screen="calendario">
+        <div class="section-header">
+          <div class="section-title">📅 Calendario</div>
+        </div>
+        <div id="calendar-list"></div>
+      </section>
+
+      <!-- Pantalla: Clasificación -->
+      <section class="screen" data-screen="clasificacion">
+        <div class="section-header">
+          <div class="section-title">📊 Clasificación</div>
+        </div>
+        <div class="card table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Pos.</th><th>Club</th><th>PJ</th><th>PG</th><th>PE</th><th>PP</th><th>GF</th><th>GC</th><th>DG</th><th>Pts</th>
+              </tr>
+            </thead>
+            <tbody id="standings-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Pantalla: Mercado -->
+      <section class="screen" data-screen="mercado">
+        <div class="section-header">
+          <div class="section-title">💸 Mercado de pases</div>
+          <div class="section-sub">Presupuesto: <span id="market-budget">—</span></div>
+        </div>
+        <div class="card market-toolbar">
+          <label style="font-size:.8rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-right:8px;">Posición</label>
+          <select class="input" id="filtro-pos" style="width:auto; max-width:160px;">
+            <option value="todos">Todas</option>
+            <option value="ARQ">Arquero</option>
+            <option value="DEF">Defensor</option>
+            <option value="MED">Mediocampista</option>
+            <option value="DEL">Delantero</option>
+          </select>
+          <label style="font-size:.8rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin:0 8px;">Val. mínima</label>
+          <select class="input" id="filtro-rating" style="width:auto; max-width:140px;">
+            <option value="">Cualquiera</option>
+            <option value="50">50+</option>
+            <option value="60">60+</option>
+            <option value="70">70+</option>
+          </select>
+          <label style="font-size:.8rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin:0 8px;">Precio máx.</label>
+          <select class="input" id="filtro-precio" style="width:auto; max-width:140px;">
+            <option value="">Cualquiera</option>
+            <option value="2000000">2 millones</option>
+            <option value="5000000">5 millones</option>
+            <option value="10000000">10 millones</option>
+          </select>
+        </div>
+        <div id="market-list"></div>
+      </section>
+
+      <!-- Pantalla: Finanzas -->
+      <section class="screen" data-screen="finanzas">
+        <div class="section-header">
+          <div class="section-title">💰 Finanzas del club</div>
+        </div>
+        <div class="card stat-row">
+          <div class="stat">
+            <div class="stat-label">Presupuesto disponible</div>
+            <div class="stat-value ok" id="fin-budget">—</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Gastos salariales (mes)</div>
+            <div class="stat-value" id="fin-salaries-month">—</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Gastos salariales (año)</div>
+            <div class="stat-value bad" id="fin-salaries-year">—</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Proyección anual</div>
+            <div class="stat-value" id="fin-projection">—</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Detalle</h3>
+          <p style="color:var(--muted);">Los salarios se pagan mensualmente. Mantén el presupuesto positivo para poder fichar en el mercado de pases.</p>
+        </div>
+      </section>
+
+      <!-- Pantalla: Historial -->
+      <section class="screen" data-screen="historial">
+        <div class="section-header">
+          <div class="section-title">🏆 Historial de temporadas</div>
+        </div>
+        <div id="historial-list"></div>
+      </section>
+
+      <!-- Pantalla: Resultado de partido -->
+      <section class="screen match-screen" data-screen="match" id="match-result-screen">
+        <div class="match-card">
+          <div class="match-header">
+            <div class="match-info" id="match-info"></div>
+          </div>
+          <div class="scoreboard">
+            <div class="team home">
+              <div id="match-home-shield"></div>
+              <div>
+                <div class="team-name" id="match-home-name"></div>
+                <div class="score"><span class="g" id="match-score-home">0</span></div>
+              </div>
+            </div>
+            <div class="score" id="match-score">— —</div>
+            <div class="team away">
+              <div>
+                <div class="team-name" id="match-away-name"></div>
+                <div class="score"><span class="g" id="match-score-away">0</span></div>
+              </div>
+              <div id="match-away-shield"></div>
+            </div>
+          </div>
+          <div class="result-label" id="match-result-label">—</div>
+          <div class="stats-row">
+            <span>Posesión: <b id="match-possession">—</b></span>
+            <span>Disparos: <b id="match-shots">—</b></span>
+          </div>
+          <div class="events" id="match-events"></div>
+          <div class="scorers">
+            <strong>Goleadores:</strong>
+            <div id="match-scorers"></div>
+          </div>
+          <button class="btn btn-primary btn-block" id="btn-close-match" style="margin-top:18px;">Cerrar y volver al inicio</button>
+        </div>
+      </section>
+
+      <!-- Pantalla: Fin de temporada -->
+      <section class="screen" data-screen="season-end" id="season-end-screen">
+        <div class="eval-card">
+          <div id="season-end-content"></div>
+        </div>
+      </section>
+
+      <!-- Pantalla: Nueva carrera -->
+      <section class="screen" data-screen="new-career">
+        <div class="section-header">
+          <div class="section-title">🆕 Nueva carrera</div>
+          <div class="section-sub">Elegí tu club de la Primera Nacional</div>
+        </div>
+        <div class="card">
+          <div class="form-group">
+            <label>Nombre de la carrera</label>
+            <input class="input" id="career-name" value="Mi Carrera">
+          </div>
+          <div class="form-group">
+            <label>Nombre del entrenador</label>
+            <input class="input" id="career-coach-name" disabled placeholder="Tu nombre">
+          </div>
+        </div>
+        <div class="card" style="max-width:900px;">
+          <div id="career-clubs"></div>
+        </div>
+        <div style="text-align:right; margin-top:14px;">
+          <button class="btn btn-primary btn-block" id="btn-start-career" disabled>Iniciar carrera</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/match.js"></script>
+  <script src="js/league.js"></script>
+  <script src="js/market.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
